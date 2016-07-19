@@ -2,7 +2,7 @@ $(document).ready(function(){
     console.log("start!");
 
     var DATA_FOLDER_PATH = "data/";
-    var DEFAULT_FILE_NAME = "feature_words_20160706-20160712.json";
+    var DEFAULT_FILE_NAME = "feature_words_20160712-20160718.json";
 
     var q = get_url_queries();
     var file_name = "";
@@ -18,8 +18,9 @@ $(document).ready(function(){
     $.getJSON(file_path , function(data) {
 
 	var table_contents_html = "";
-	var graph_data = [['年月日', 'ツイート件数', 'リツイート件数']];
-	for(var i = 0; i < data.length; i++){
+	var graph_data = [['年月日', 'ツイート件数(リツート含む)', 'リツイート件数']];
+	var N = data.length
+	for(var i = 0; i < N; i++){
 
 	    // HTML
 	    str_date = (data[i].date).replace(/\//g, "");
@@ -34,7 +35,8 @@ $(document).ready(function(){
 	    table_contents_html += "</tr>";
 
 	    //グラフ用データ
-	    graph_data.push([data[i].date,data[i].tweets_count,data[i].retweets_count]);
+	    //graph_data.push([data[i].date,data[i].tweets_count,data[i].retweets_count]);
+	    graph_data.push([data[(N-1)-i].date,data[(N-1)-i].tweets_count,data[(N-1)-i].retweets_count]);
 	}
 
 	//テーブルデータ表示
@@ -62,9 +64,10 @@ function show_tweets_with_filter(str_date, word){
     var tweets_file_path = "data/tweets_" + str_date + ".json";
 
     $.getJSON(tweets_file_path , function(tweets) {
-
-	$("#tweets-table-head").show();
+	$("#tweets-table").show();
 	$("#loading").hide();
+
+	$("#feature_word").text("【特徴語：" + word + "】");
 
 	var table_contents_html = "";
 	for(var i = 0; i < tweets.length; i++) {
@@ -88,7 +91,7 @@ function show_tweets_with_filter(str_date, word){
 
     });
 
-    $("#tweets-table-head").hide();
+    $("#tweets-table").hide();
     $("#loading").show();
 }
 

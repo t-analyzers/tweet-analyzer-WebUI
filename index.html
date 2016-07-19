@@ -23,14 +23,15 @@
 	  <a href="#" class="brand-logo center">MCOPY Tweets Analysis Result</a>
 	</div>
 	</nav>
-	<div class="container">
 
+	<div class="container">
 	  <div class="progress" id="loading" style="display:none;">
 	    <div class="indeterminate"></div>
 	  </div>
 
-	    <table class="highlight responsive-table" id="tweets-table-head" style="display:none;">
-	      <caption>ツイート詳細</caption>
+	  <div  id="tweets-table" style="display:none;">
+	    <h5 id="feature_word"></h5>
+	    <table class="highlight responsive-table">
               <thead>
 		<tr>
 		  <th data-field="created_date">日時</th>
@@ -40,13 +41,14 @@
 		  <th data-field="print_id">プリント予約番号</th>
 		</tr>
               </thead>
-              <tbody id="tweets">
-
-	      </tbody>
+              <tbody id="tweets"></tbody>
 	    </table>
+	  </div>
 
+	  <div>
+	    <h5>【日別特徴語】</h5>
+	    ※特徴語をクリックするとツイートが表示されます
 	    <table class="highlight centered responsive-table">
-	      <caption>日別特徴語</caption>
               <thead>
 		<tr>
 		  <th rowspan="2">日にち</th>
@@ -67,13 +69,10 @@
 		</tr>
               </thead>
               <tbody id="feature_words"></tbody>
-	      <tfoot><tr><td colspan="12">※特徴語をクリックするとツイートが表示されます</td></tr></tfoot>
 	    </table>
+	  </div>
+	  <div id="chart"></div>
 
-	    <div id="chart">
-	    </div>
-
-	</div>
 	<footer class="page-footer">
 	<div class="footer-copyright">
 		<div class="container">
