@@ -25,8 +25,9 @@ function show_feature_words(file_path){
     $.getJSON(file_path , function(data) {
 
 	var table_contents_html = "";
+	var N = data.length
 	var graph_data = [['年月日', 'ツイート件数(リツイート含む)', 'リツイート件数']];
-	for(var i = 0; i < data.length; i++){
+	for(var i = 0; i < N; i++){
 
 	    // HTML
 	    str_date = (data[i].date).replace(/\//g, "");
@@ -41,7 +42,8 @@ function show_feature_words(file_path){
 	    table_contents_html += "</tr>";
 
 	    //グラフ用データ
-	    graph_data.push([data[i].date,data[i].tweets_count,data[i].retweets_count]);
+	    graph_data.push([data[(N-1)-i].date,data[(N-1)-i].tweets_count,data[(N-1)-i].retweets_count]);
+
 	}
 
 	//テーブルデータ表示
@@ -73,13 +75,13 @@ function show_tweets_with_filter(str_date, word){
 	$("#feature_word").text("【特徴語：" + word + "】");
 
 	var table_contents_html = "";
-	for(var i = 0; i < tweets.length; i++) {
+	var N = data.length;
+	for(var i = 0; i < N; i++) {
 	    //tweetの名詞群(nouns)にwordが含まれている場合に表示する
 	    if( (tweets[i].nouns).indexOf(word) != -1){
 		table_contents_html +="<tr><td>" + tweets[i].created_datetime + "</td>" +
 		    "<td>" + tweets[i].retweet_count + "</td>" + 
 		    "<td>" + tweets[i].text + "</td>";
-
 		var img_link = "";
 		if(tweets[i].media_urls != undefined){
 		    img_link = "<a href='" + tweets[i].media_urls + "' target='_blank'><i class='material-icons'>photo</i></a>";
