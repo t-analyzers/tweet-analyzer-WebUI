@@ -75,7 +75,7 @@ function show_tweets_with_filter(str_date, word){
 	$("#feature_word").text("【特徴語：" + word + "】");
 
 	var table_contents_html = "";
-	var N = data.length;
+	var N = tweets.length;
 	for(var i = 0; i < N; i++) {
 	    //tweetの名詞群(nouns)にwordが含まれている場合に表示する
 	    if( (tweets[i].nouns).indexOf(word) != -1){
