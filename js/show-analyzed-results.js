@@ -32,7 +32,7 @@ function show_feature_words(file_path){
 	    // HTML
 	    str_date = (data[i].date).replace(/\//g, "");
 	    table_contents_html += "<tr id='"+ str_date +"'>" + 
-		"<td>"+ data[i].date + "</td>"+ 
+		"<td class='wordcloud'>"+ data[i].date + "</td>"+ 
 		"<td>"+ data[i].tweets_count + "</td>";
 
 	    var words = data[i].feature_words;
@@ -59,6 +59,14 @@ function show_feature_words(file_path){
 	    var word = elem.target.innerText;
 
 	    show_tweets_with_filter(date, word);
+	});
+
+	//クリックイベント
+	$('td.wordcloud').on('click',function(elem){
+
+	    var date = elem.target.parentNode.id;
+	    show_wordcloud(date);
+
 	});
 
     });
@@ -140,4 +148,10 @@ function get_url_queries()
     }
 
     return queries;
+}
+
+function show_wordcloud(str_date){
+    var img_path = "data/wordcloud_" + str_date + ".png";
+    $("#wordcloud").show();
+    $("#wordcloud_img").attr("src",img_path);    
 }
