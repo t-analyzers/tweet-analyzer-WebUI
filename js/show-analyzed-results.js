@@ -69,6 +69,11 @@ function show_feature_words(file_path){
 
 	});
 
+	//クリックイベント
+	$('#wordcloud').on('click',function(){
+	    $('#wordcloud').hide();
+	});
+
     });
 }
 
