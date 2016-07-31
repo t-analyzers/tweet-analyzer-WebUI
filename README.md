@@ -1,7 +1,7 @@
 # tweet-analyzer-WebUI
 
 [tweet-analyzer](https://github.com/t-analyzers/tweet-analyzer "tweet-analyzer")の
-feature_words_extractor.pyで生成したJSONファイルを表示するためのWeb UIです。
+feature_words_extractor.pyで生成したJSONファイルと画像データを表示するためのWeb UIです。
 
 デザインは[Materialize CSS](http://materializecss.com/ "Materialize CSS")を使用しています。（このリポジトリに含まれています）
 
@@ -18,7 +18,9 @@ feature_words_extractor.pyで生成したJSONファイルを表示するため�
 ## データ
 feature_words_extractor.pyで生成するデータはdataフォルダ以下に格納してください。
 * data/feature_words_YYYYMMDD1-YYYYMMDD2.json：　日別特徴語データ(YYYYMMDD1-YYYYMMDD2：分析期間)
+* data/filelist-feature_words.json：　dataフォルダに存在する日別特徴語データのファイル名リスト（降順）。最初のファイルをindex.html表示の初期値に使用。
 * data/tweets_YYYYMMDD.json：　日別ツイートデータ(YYYYMMDD：年月日)
+* data/wordcloud_YYYYMMDD.png：　日別ワードクラウドの画像データ(YYYYMMDD：年月日)
 
 ## 起動方法
 * feature_words_extractor.pyを動作させて必要なデータファイルをdataフォルダ以下に生成またはコピーしてください。
@@ -28,6 +30,4 @@ feature_words_extractor.pyで生成するデータはdataフォルダ以下に�
 
 ## ToDo
 今後の改修予定。
-* 現在のshow-analyzed-results.jsでは初期データファイルをベタ書きなので、そのフォルダの最新の日別特徴語データを自動取得できるようにしたい。
-（javascriptでは無理っぽい。それ用のスクリプトを作成する必要がありそう。）
 * 日別特徴語データファイルをプルダウンで選択できるようにする。
