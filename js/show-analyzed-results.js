@@ -111,6 +111,8 @@ function show_tweets_with_filter(str_date, word){
 
     $("#tweets-table").hide();
     $("#loading").show();
+
+    move_in_page("#top");
 }
 
 function draw_chart(graph_data){
@@ -118,9 +120,9 @@ function draw_chart(graph_data){
     google.charts.load('current', {'packages':['corechart']});
 
     google.charts.setOnLoadCallback(function(){
-	// この辺データ
+	// データ
 	var data = google.visualization.arrayToDataTable(graph_data);
-	// この辺グラフの描画オプション
+	// グラフの描画オプション設定
 	var options = {
 	    title: '日次ツイート件数',
 	    chartArea: {'width':'70%', 'height':'65%', 'left':65 },
@@ -158,5 +160,23 @@ function get_url_queries()
 function show_wordcloud(str_date){
     var img_path = "data/wordcloud_" + str_date + ".png";
     $("#wordcloud").show();
-    $("#wordcloud_img").attr("src",img_path);    
+    $("#wordcloud_img").attr("src",img_path);
+    move_in_page("#wordcloud");
+}
+
+/**
+   ページ内でアニメーション付き遷移する
+   target_id: 移動先のid（セレクタ形式： #XXXX）
+*/
+function move_in_page(target_id){
+    // 移動先のタグ
+    var target = $(target_id);
+    // 移動先となる値
+    var targetY = target.offset().top;
+
+    // スクロールにかかる時間
+    var time = 500;
+
+    // スクロールアニメーション
+    $('html,body').animate({scrollTop: targetY}, time, 'swing');
 }
