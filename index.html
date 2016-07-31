@@ -14,10 +14,12 @@
 		<script type="text/javascript" src="js/show-analyzed-results.js"></script> 
 		
 		<!--Let browser know website is optimized for mobile-->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"/> -->
+		<meta name="viewport"/>
 
 	</head>
 	<body>
+
 	<nav>
 	<div class="nav-wrapper">
 	  <a href="#" class="brand-logo center">MCOPY Tweets Analysis Result</a>
@@ -31,7 +33,7 @@
 
 	  <div  id="tweets-table" style="display:none;">
 	    <h5 id="feature_word"></h5>
-	    <table class="highlight responsive-table">
+	    <table class="highlight">
               <thead>
 		<tr>
 		  <th data-field="created_date">日時</th>
@@ -44,12 +46,11 @@
               <tbody id="tweets"></tbody>
 	    </table>
 	  </div>
-
 	  <div>
 	    <h5>【日別特徴語】</h5>
 	    ※特徴語をクリックするとツイートが表示されます（リツイートは除く）<br />
 	    ※日付をクリックするとWord Cloudが表示されます<br />
-	    <table class="highlight centered responsive-table">
+	    <table class="highlight centered">
               <thead>
 		<tr>
 		  <th rowspan="2">日にち</th>
@@ -72,9 +73,8 @@
               <tbody id="feature_words"></tbody>
 	    </table>
 	  </div>
-	  <div id="wordcloud" style="display:none;"><img id="wordcloud_img"/></div>
 	  <div id="chart"></div>
-
+	  <div id="wordcloud" style="display:none;"><img id="wordcloud_img"/></div>
 	<footer class="page-footer">
 	<div class="footer-copyright">
 		<div class="container">
