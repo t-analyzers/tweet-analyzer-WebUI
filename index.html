@@ -21,7 +21,7 @@
 	<body>
 
 	<nav>
-	<div class="nav-wrapper">
+	<div class="nav-wrapper" id="top">
 	  <a href="#" class="brand-logo center">MCOPY Tweets Analysis Result</a>
 	</div>
 	</nav>
@@ -37,7 +37,7 @@
               <thead>
 		<tr>
 		  <th data-field="created_date">日時</th>
-		  <th data-field="retweet_count">リツイート数</th>
+		  <th data-field="retweet_count">RT数</th>
 		  <th data-field="text">内容</th>
 		  <th data-field="media_url">画像URL</th>
 		  <th data-field="print_id">プリント予約番号</th>
@@ -46,10 +46,13 @@
               <tbody id="tweets"></tbody>
 	    </table>
 	  </div>
+
+	  <div id="wordcloud" style="display:none;"><img id="wordcloud_img"/></div>
+
 	  <div>
 	    <h5>【日別特徴語】</h5>
 	    ※特徴語をクリックするとツイートが表示されます（リツイートは除く）<br />
-	    ※日付をクリックするとWord Cloudが表示されます<br />
+	    ※日にちをクリックするとWord Cloudが表示されます<br />
 	    <table class="highlight centered">
               <thead>
 		<tr>
@@ -74,7 +77,6 @@
 	    </table>
 	  </div>
 	  <div id="chart"></div>
-	  <div id="wordcloud" style="display:none;"><img id="wordcloud_img"/></div>
 	<footer class="page-footer">
 	<div class="footer-copyright">
 		<div class="container">
