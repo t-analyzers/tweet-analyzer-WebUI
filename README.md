@@ -8,10 +8,15 @@ feature_words_extractor.pyで生成したJSONファイルと画像データを�
 グラフには[Google Charts](https://developers.google.com/chart/ "Google Charts")を使用しています。
 
 ## 構成
-* *index.html*：　
-	情報表示用のHTML。クエリパラメータq=YYYYMMDD1-YYYYMMDD2を指定することにより、その分析期間の日別特徴語データファイルを指定することができます。
+* *featurewords.html*：　
+	情報表示用のHTML。クエリパラメータp=YYYYMMDD1-YYYYMMDD2を指定することにより、その分析期間の日別特徴語データファイルを指定することができます。
 * *js/show-analyzed-results.js*：　
-	日別特徴語とツイート数のグラフを表示し、特徴語をクリックするとそのツイートを表示する。
+	featurewords.htmlで使用。日別特徴語とツイート数のグラフを表示し、特徴語をクリックするとそのツイートを表示する。
+* *imagelist.html*：
+	日にち単位の画像をretweet数の降順で表示するHTML。
+* *js/show-tweets-img.js*：
+	imagelist.htmlで使用。指定された日のツイートの画像を表示する。
+
 * *その他のjs,css,font,fontsなどのデータ*：　
 	jQueryとMateriaizeCSSです。
 
