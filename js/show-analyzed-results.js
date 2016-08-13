@@ -90,8 +90,8 @@ function show_tweets_with_filter(str_date, word){
 	var table_contents_html = "";
 	var N = tweets.length;
 	for(var i = 0; i < N; i++) {
-	    //tweetの名詞群(nouns)にwordが含まれている場合に表示する
-	    if( (tweets[i].nouns).indexOf(word) != -1){
+	    //tweetの名詞群(text)にwordが含まれている場合に表示する
+	    if( (tweets[i].text).indexOf(word) != -1){
 		table_contents_html +="<tr><td>" + tweets[i].created_datetime + "</td>" +
 		    "<td>" + tweets[i].retweet_count + "</td>" + 
 		    "<td>" + tweets[i].text + "</td>";

@@ -52,7 +52,7 @@ function show_tweets_img(file_path){
 	var cards = [];
 	for(var i = 0; i < tweets.length; i++){
 
-	    if(tweets[i].media_urls != undefined){
+	    if(tweets[i].media_urls != undefined && tweets[i].retweet == undefined){ //retweetは除く
 		var html_card = "";
 		var card_title = tweets[i]["user.screen_name"];
 		var pid = tweets[i]["PrintID"];
@@ -93,6 +93,8 @@ function show_tweets_img(file_path){
 	    }
 	}
 
+	$('#img-count').html('件数: ' + cards.length);
+
 	//リツイート数の降順に並び替え
 	cards.sort(function(a, b) {
             return (a.retweet_count > b.retweet_count) ? -1 : 1;
@@ -102,7 +104,7 @@ function show_tweets_img(file_path){
 	for(var i = 0; i < cards.length; i++){
 	    html_cards += cards[i]["card"];
 	}
-	
+
 	$("#imglist").html(html_cards);
 
 	$("#loading").hide();
