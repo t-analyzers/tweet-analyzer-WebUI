@@ -95,12 +95,18 @@ function show_tweets_with_filter(str_date, word){
 		table_contents_html +="<tr><td>" + tweets[i].created_datetime + "</td>" +
 		    "<td>" + tweets[i].retweet_count + "</td>" + 
 		    "<td>" + tweets[i].text + "</td>";
+
 		var img_link = "";
 		if(tweets[i].media_urls != undefined){
 		    img_link = "<a href='" + tweets[i].media_urls + "' target='_blank'><i class='material-icons'>photo</i></a>";
 		}
-		table_contents_html += "<td>" + img_link + "</td>" +
-		    "<td>" + tweets[i].PrintID + "</td></tr>";
+		table_contents_html += "<td>" + img_link + "</td>";
+		
+		var printid = "";
+		if(tweets[i].PrintID != undefined){
+		    printid = tweets[i].PrintID
+		 }
+		 table_contents_html += "<td>" + printid + "</td></tr>";
 	    }
 	}
 

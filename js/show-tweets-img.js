@@ -70,7 +70,7 @@ function show_tweets_img(file_path){
 		html_card += "<span class='card-title activator grey-text text-darken-4'>"
 		    + "<i class='material-icons right'>textsms</i></span>";
 		html_card += "<p>リツイート数:"+ tweets[i]["retweet_count"] + "</p>";
-		if(pid != ""){
+		if(pid != "" && pid != undefined){ //昔のデータは"PrintID"を含んでいたので1つ目の条件を残す
 		    html_card += "<p>プリント予約番号：" + pid + "</p>";
 		}
 		var tweet_link = "https://twitter.com/"+tweets[i]["user.screen_name"]+"/status/"+tweets[i]["id"];
