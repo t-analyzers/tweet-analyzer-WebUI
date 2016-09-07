@@ -26,29 +26,36 @@ function show_feature_words(file_path){
 
 	var table_contents_html = "";
 	var N = data.length
-	var graph_data = [['年月日', 'ツイート件数(リツイート含む)', 'リツイート件数']];
+	var graph_data = [['年月日', 'ツイート件数(RT含む)', 'RT件数','ポジ件数','ネガ件数']];
+
 	for(var i = 0; i < N; i++){
 
 	    // HTML
 	    str_date = (data[i].date).replace(/\//g, "");
 	    table_contents_html += "<tr id='"+ str_date +"'>" + 
-		"<td class='wordcloud'>"+ data[i].date + "</td>"+ 
-		"<td>"+ data[i].tweets_count + "</td>";
+		"<td class='wordcloud'>"+ data[i].date + "</td>";
 
 	    var words = data[i].feature_words;
 	    for(var j = 0; j < words.length; j++) {
 		table_contents_html += "<td class='words'>"+ words[j] + "</td>";
 	    }
+
+	    table_contents_html += "<td>" +  
+		"<span  class='posi'><i class='material-icons'>mood</i></span>" +
+		"<span class='nega'><i class='material-icons'>mood_bad</i></span>" + 
+		"</td>";
+
 	    table_contents_html += "</tr>";
 
 	    //グラフ用データ
-	    graph_data.push([data[(N-1)-i].date,data[(N-1)-i].tweets_count,data[(N-1)-i].retweets_count]);
-
+	    graph_data.push([data[(N-1)-i].date,data[(N-1)-i].tweets_count,data[(N-1)-i].retweets_count,
+			     data[(N-1)-i].posi_count,data[(N-1)-i].nega_count]);
 	}
 
 	//テーブルデータ表示
 	var tableContents = $("#feature_words");
   	tableContents.html(table_contents_html);
+
 	//グラフ描画
 	draw_chart(graph_data);
 
@@ -58,7 +65,15 @@ function show_feature_words(file_path){
 	    var date = elem.target.parentNode.id;
 	    var word = elem.target.innerText;
 
-	    show_tweets_with_filter(date, word);
+	    show_tweets_with_filter(date, word, "");
+	});
+
+	//クリックイベント
+	$('.posi,.nega').on('click',function(elem){
+	    //elemからの取得の仕方がイマイチ。改善したい。
+	    var date = elem.target.parentNode.parentNode.parentNode.id;
+	    var negaposi = elem.target.parentNode.className;
+	    show_tweets_with_filter(date, "", negaposi);
 	});
 
 	//クリックイベント
@@ -77,7 +92,7 @@ function show_feature_words(file_path){
     });
 }
 
-function show_tweets_with_filter(str_date, word){
+function show_tweets_with_filter(str_date, word, negaposi){
 
     var tweets_file_path = "data/tweets_" + str_date + ".json";
 
@@ -85,13 +100,37 @@ function show_tweets_with_filter(str_date, word){
 	$("#tweets-table").show();
 	$("#loading").hide();
 
-	$("#feature_word").text("【特徴語：" + word + "】");
+	var filter_title = "";
+	if(word != ""){
+	    filter_title = "【特徴語：" + word + "】";
+	}else if(negaposi != ""){
+	    if(negaposi == "posi"){
+		filter_title = "【ポジティブツイート】";
+	    }else if(negaposi == "nega"){
+		filter_title = "【ネガティブツイート】";
+	    }
+	}
+	$("#filter_title").text(filter_title);
 
 	var table_contents_html = "";
 	var N = tweets.length;
 	for(var i = 0; i < N; i++) {
-	    //tweetの名詞群(text)にwordが含まれている場合に表示する
-	    if( (tweets[i].text).indexOf(word) != -1){
+	    var condition = false;
+
+	    //表示条件
+	    if(word != ""){ //wordが設定されている場合、textにwordが含まれているかどうかをconditionに設定する
+		//tweetの名詞群(text)にwordが含まれている場合に表示する
+		condition = ((tweets[i].text).indexOf(word) != -1);
+	    }else if(negaposi !=""){ //negaposiが設定されている場合、negaまたはposiでconditionに設定する
+		if(negaposi == "posi"){
+		    condition = (tweets[i].negaposi == 1)
+		}else if(negaposi == "nega"){
+		    condition = (tweets[i].negaposi == -1)
+		}
+	    }
+
+	    //conditionがtrueの場合表示する。
+	    if(condition){
 		table_contents_html +="<tr><td>" + tweets[i].created_datetime + "</td>" +
 		    "<td>" + tweets[i].retweet_count + "</td>" + 
 		    "<td>" + tweets[i].text + "</td>";
@@ -133,7 +172,7 @@ function draw_chart(graph_data){
 	    title: '日次ツイート件数',
 	    chartArea: {'width':'70%', 'height':'65%', 'left':65 },
 	    hAxis: { title:'年月日', titleTextStyle:{italic:false} },
-	    vAxis: { title:'ツイート/リツイート件数',  titleTextStyle:{italic:false} },
+	    vAxis: { title:'件数',  titleTextStyle:{italic:false} },
 	    crosshair: { trigger: 'both' }
 	};
 	// この辺おまじない

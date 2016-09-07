@@ -32,15 +32,15 @@
 	  </div>
 
 	  <div  id="tweets-table" style="display:none;">
-	    <h5 id="feature_word"></h5>
-	    <table class="highlight">
+	    <h5 id="filter_title"></h5>
+	    <table class="highlight centered">
               <thead>
 		<tr>
-		  <th data-field="created_date">日時</th>
-		  <th data-field="retweet_count">RT数</th>
-		  <th data-field="text">内容</th>
-		  <th data-field="media_url">画像URL</th>
-		  <th data-field="print_id">プリント予約番号</th>
+		  <th data-field="created_date"><i class='material-icons'>access_time</i></th>
+		  <th data-field="retweet_count"><i class='material-icons'>repeat</i></th>
+		  <th data-field="text"><i class='material-icons'>chat</i></th>
+		  <th data-field="media_url"><i class='material-icons'>link</i></th>
+		  <th data-field="print_id">PID</th>
 		</tr>
               </thead>
               <tbody id="tweets"></tbody>
@@ -48,7 +48,7 @@
 	  </div>
 
 	  <div id="wordcloud" style="display:none;"><img id="wordcloud_img"/></div>
-
+	  <div id="chart"></div>
 	  <div>
 	    <h5>【日別特徴語】</h5>
 	    ※特徴語をクリックするとツイートが表示されます<br />
@@ -56,9 +56,9 @@
 	    <table class="highlight centered">
               <thead>
 		<tr>
-		  <th rowspan="2">日にち</th>
-		  <th rowspan="2">ツィート数</th>
+		  <th rowspan="2"><i class='material-icons'>date_range</i></th>
 		  <th colspan="10">特徴語</th>
+		  <th rowspan="2">ネガポジβ</th>
 		</tr>
 		<tr>
 		  <th data-field="word0">1</th>
@@ -76,7 +76,6 @@
               <tbody id="feature_words"></tbody>
 	    </table>
 	  </div>
-	  <div id="chart"></div>
 	</div>
 	<footer class="page-footer">
 	<div class="footer-copyright">
