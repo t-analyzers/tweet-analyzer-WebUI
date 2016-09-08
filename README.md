@@ -8,15 +8,19 @@ feature_words_extractor.pyで生成したJSONファイルと画像データを�
 グラフには[Google Charts](https://developers.google.com/chart/ "Google Charts")を使用しています。
 
 ## 構成
+### 特徴語サイト
 * *featurewords.html*：　
 	情報表示用のHTML。クエリパラメータp=YYYYMMDD1-YYYYMMDD2を指定することにより、その分析期間の日別特徴語データファイルを指定することができます。
 * *js/show-analyzed-results.js*：　
 	featurewords.htmlで使用。日別特徴語とツイート数のグラフを表示し、特徴語をクリックするとそのツイートを表示する。
+
+### 画像一覧サイト
 * *imagelist.html*：
 	日にち単位の画像をretweet数の降順で表示するHTML。
 * *js/show-tweets-img.js*：
 	imagelist.htmlで使用。指定された日のツイートの画像を表示する。
 
+### 共通素材
 * *その他のjs,css,font,fontsなどのデータ*：　
 	jQueryとMateriaizeCSSです。
 
@@ -29,7 +33,7 @@ feature_words_extractor.pyで生成するデータはdataフォルダ以下に�
 
 ## 起動方法
 * feature_words_extractor.pyを動作させて必要なデータファイルをdataフォルダ以下に生成またはコピーしてください。
-* Webサーバー配下にindex.html及びjs,cssなど一式を格納してください。WebアプリケーションサーバーでなくてもOKです。(DropboxのPublicフォルダが一番手軽です。)
+* Webサーバー配下にindex.html及びjs,cssなど一式を格納してください。WebアプリケーションサーバーでなくてもOKです。
 なお、ローカルのHTMLファイルをブラウザで表示してもjavascriptが動作しません。
 * 表示する日別特徴語データはshow-analyzed-results.jsにベタ書きしているので、DEFAULT_FILE_NAMEを準備した日別特徴語データファイルに書き換えてください。
 

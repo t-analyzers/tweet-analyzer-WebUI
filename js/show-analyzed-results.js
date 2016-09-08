@@ -41,8 +41,8 @@ function show_feature_words(file_path){
 	    }
 
 	    table_contents_html += "<td>" +  
-		"<span  class='posi'><i class='material-icons'>mood</i></span>" +
 		"<span class='nega'><i class='material-icons'>mood_bad</i></span>" + 
+		"<span  class='posi'><i class='material-icons'>mood</i></span>" +
 		"</td>";
 
 	    table_contents_html += "</tr>";
