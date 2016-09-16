@@ -134,7 +134,8 @@ function show_tweets_with_filter(str_date, word, negaposi){
 		table_contents_html +="<tr><td>" + tweets[i].created_datetime + "</td>" +
 		    "<td>" + tweets[i].retweet_count + "</td>" + 
 		    "<td>" + tweets[i].text + "</td>";
-
+		var tweet_link = "https://twitter.com/"+tweets[i]["user.screen_name"]+"/status/"+tweets[i]["id"];
+		table_contents_html += "<td><a href='"+tweet_link+"' target='tweet'><i class='material-icons'>link</i></a></td>";
 		var img_link = "";
 		if(tweets[i].media_urls != undefined){
 		    img_link = "<a href='" + tweets[i].media_urls + "' target='_blank'><i class='material-icons'>photo</i></a>";
