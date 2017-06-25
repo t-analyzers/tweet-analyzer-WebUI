@@ -32,6 +32,13 @@ $(document).ready(function(){
 	$("#select-date").html(html_select);
 	$("#select-date").material_select();
 
+	//トップページに戻るボタンを配置
+	$("#to_toppage").on("click",function() {
+            $('html,body').animate({
+                scrollTop: 0
+            }, 'fast');
+            return false;});
+
 	//プルダウンで選択した日付の情報を表示する
 	$('.select-wrapper>ul>li>span').on('click',function(elem){
 	    var date = elem.target.innerText;
